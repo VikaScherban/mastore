@@ -1,0 +1,7 @@
+@import "colors";
+
+@mixin container($padding-value) {
+  padding: $padding-value;
+  background: $platinum;
+  border-radius: 6px;
+}
