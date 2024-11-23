@@ -16,6 +16,8 @@ import { AsmCustomer360FeatureModule } from './features/asm/asm-customer360-feat
 import { SmartEditFeatureModule } from './features/smartedit/smart-edit-feature.module';
 import { ProductVariantsFeatureModule } from './features/product/product-variants-feature.module';
 import { ProductImageZoomFeatureModule } from './features/product/product-image-zoom-feature.module';
+import { StRegistrationFeatureModule } from "./features/user/st-registration-feature.module";
+import { StCartFeatureModule } from "./features/cart/st-cart-feature.module";
 
 @NgModule({
   declarations: [],
@@ -82,7 +84,9 @@ import { ProductImageZoomFeatureModule } from './features/product/product-image-
     AsmCustomer360FeatureModule,
     SmartEditFeatureModule,
     ProductVariantsFeatureModule,
-    ProductImageZoomFeatureModule
+    ProductImageZoomFeatureModule,
+    StRegistrationFeatureModule,
+    StCartFeatureModule
   ],
   providers: [provideFeatureToggles({
     "formErrorsDescriptiveMessages": true,

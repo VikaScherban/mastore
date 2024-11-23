@@ -1,0 +1,19 @@
+.btn {
+  font-weight: var(--cx-font-weight-bold);
+  text-transform: var(--cx-text-transform);
+  line-height: 1;
+  padding: 12px 24px;
+  min-height: 48px;
+  min-width: 48px;
+  border-radius: var(--cx-buttons-border-radius);
+
+  &.btn-primary {}
+  &.btn-secondary {}
+  &.btn-success {}
+  &.btn-danger {}
+  &.btn-warning {}
+  &.btn-info {}
+  &.btn-light {}
+  &.btn-dark {}
+  &.btn-link {}
+}

@@ -1,0 +1,49 @@
+@if (cart()) {
+  @if (entries()) {
+    @if (cart()?.totalItems) {
+
+      <cx-cart-validation-warnings></cx-cart-validation-warnings>
+
+      <h2 class="cx-total">
+        {{ 'cartDetails.cartName' | cxTranslate: { code: cart()?.code } }}
+      </h2>
+
+      <cx-promotions
+        [promotions]="
+          (cart()?.appliedOrderPromotions || []).concat(
+            cart()?.potentialOrderPromotions || []
+          )
+        "
+      ></cx-promotions>
+
+      <st-cart-actions></st-cart-actions>
+
+      <div class="st-cart">
+        <st-cart-items
+          [items]="entries()"
+          [cartIsLoading]="!cartLoaded()"
+          [promotionLocation]="promotionLocation"
+          [options]="{
+          isSaveForLater: false,
+          optionalBtn: saveForLaterBtn,
+        }"
+        ></st-cart-items>
+      </div>
+
+      <st-cart-actions></st-cart-actions>
+    }
+  }
+}
+
+<ng-template let-ctx #saveForLaterBtn>
+  @if (selectiveCartEnabled) {
+    <button
+      class="btn btn-tertiary cx-sfl-btn"
+      [disabled]="ctx.loading"
+      (click)="saveForLater(ctx.item)"
+      type="button"
+    >
+      {{ 'saveForLaterItems.saveForLater' | cxTranslate }}
+    </button>
+  }
+</ng-template>

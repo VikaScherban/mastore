@@ -1,0 +1,81 @@
+@if (isUpdating()) {
+  <cx-spinner class="overlay"></cx-spinner>
+}
+<div class="st-cart w-100">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <label>
+    <span class="label-content">
+      {{ 'loginForm.emailAddress.label' | cxTranslate }}
+    </span>
+      <input
+        required="true"
+        type="email"
+        class="form-control"
+        formControlName="userId"
+        placeholder="{{ 'loginForm.emailAddress.placeholder' | cxTranslate }}"
+      />
+
+      <cx-form-errors
+        *cxFeature="'formErrorsDescriptiveMessages'"
+        [translationParams]="{
+        label: 'loginForm.emailAddress.label' | cxTranslate,
+      }"
+        [control]="form.get('userId')"
+      ></cx-form-errors>
+
+      <cx-form-errors
+        *cxFeature="'!formErrorsDescriptiveMessages'"
+        [control]="form.get('userId')"
+      ></cx-form-errors>
+    </label>
+
+    <label>
+    <span class="label-content">
+      {{ 'loginForm.password.label' | cxTranslate }}
+    </span>
+      <input
+        required="true"
+        type="password"
+        class="form-control"
+        placeholder="{{ 'loginForm.password.placeholder' | cxTranslate }}"
+        formControlName="password"
+        [attr.aria-label]="'loginForm.password.placeholder' | cxTranslate"
+        cxPasswordVisibilitySwitch
+      />
+
+      <cx-form-errors
+        *cxFeature="'formErrorsDescriptiveMessages'"
+        [translationParams]="{
+        label: 'loginForm.password.label' | cxTranslate,
+      }"
+        [control]="form.get('password')"
+      ></cx-form-errors>
+
+      <cx-form-errors
+        *cxFeature="'!formErrorsDescriptiveMessages'"
+        [control]="form.get('password')"
+      ></cx-form-errors>
+    </label>
+
+    <a [routerLink]="{ cxRoute: 'forgotPassword' } | cxUrl" class="btn-link">
+      {{ 'loginForm.forgotPassword' | cxTranslate }}
+    </a>
+
+    <button
+      type="submit"
+      class="btn btn-block btn-primary"
+      [disabled]="form.disabled"
+    >
+      {{ 'loginForm.signIn' | cxTranslate }}
+    </button>
+  </form>
+</div>
+
+<ng-template #requiredAsterisk>
+  <abbr
+    *cxFeature="'a11yRequiredAsterisks'"
+    class="text-decoration-none"
+    title="{{ 'common.required' | cxTranslate }}"
+  >*</abbr
+  >
+</ng-template>
