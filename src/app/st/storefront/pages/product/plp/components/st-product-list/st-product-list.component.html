@@ -1,0 +1,96 @@
+@if (model()) {
+  <div class="cx-page">
+    <section
+      tabindex="-1"
+      class="cx-page-section"
+      [attr.aria-label]="'productList.productListResults' | cxTranslate"
+    >
+      <div class="container">
+        <div class="row">
+          @if (viewMode()) {
+            <div class="col-12 col-lg-12">
+              <ng-template
+                [ngTemplateOutlet]="navigation"
+              ></ng-template>
+              <div id="product-results-list" class="container">
+                <!-- Product list when using pagination -->
+                @if (!isInfiniteScroll) {
+                  @if (viewMode() === ViewModes.Grid) {
+                    <div class="row">
+                      @for (product of model()?.products; track product) {
+                        <div class="col-12 col-sm-6 col-md-4">
+                          <st-product-grid-item
+                            [product]="product"
+                          ></st-product-grid-item>
+                        </div>
+                      }
+                    </div>
+                  }
+                  @if (viewMode() === ViewModes.List) {
+                    <div class="d-flex flex-column">
+                      @for (product of model()?.products; track product) {
+                        <st-product-list-item
+                          [product]="product"
+                          class="cx-product-search-list"
+                        ></st-product-list-item>
+                      }
+                    </div>
+                  }
+                } @else {
+                  <cx-product-scroll
+                    [scrollConfig]="scrollConfig"
+                    [model]="model()"
+                    [inputViewMode]="viewMode()"
+                  ></cx-product-scroll>
+                }
+              </div>
+              <ng-template
+                [ngTemplateOutlet]="navigation"
+              ></ng-template>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+}
+
+<ng-template #navigation>
+  <div class="d-flex flex-column flex-md-row md-justify-content-between align-items-center mb-2 mt-2">
+    <div class="w-100">
+      <label class="form-group cx-sort-dropdown col-12 col-lg-4 mr-auto">
+        <span>{{ 'productList.sortBy' | cxTranslate }}</span>
+        <cx-sorting
+          [sortOptions]="model()?.sorts"
+          (sortListEvent)="sortList($event)"
+          [selectedOption]="model()?.pagination?.sort"
+          [ariaLabel]="'productList.sortResults' | cxTranslate"
+          ariaControls="product-results-list"
+          placeholder="{{ 'productList.sortBy' | cxTranslate }}"
+        ></cx-sorting>
+      </label>
+    </div>
+    <div class="d-flex flex-row justify-content-between align-items-center w-auto">
+      @if (!isInfiniteScroll) {
+        <div class="col-auto">
+          <div
+            class="cx-pagination"
+            [attr.aria-label]="'productList.productSearchPagination' | cxTranslate"
+          >
+            <cx-pagination
+              [pagination]="model()?.pagination"
+              queryParam="currentPage"
+              [defaultPage]="0"
+            ></cx-pagination>
+          </div>
+        </div>
+      }
+      <div class="col-auto ml-auto ml-lg-0">
+        <cx-product-view
+          (modeChange)="setViewMode($event)"
+          [mode]="viewMode()"
+        ></cx-product-view>
+      </div>
+    </div>
+  </div>
+</ng-template>

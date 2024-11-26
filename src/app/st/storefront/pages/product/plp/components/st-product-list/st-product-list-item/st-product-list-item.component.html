@@ -1,0 +1,77 @@
+<div class="st-cart mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <a
+          [attr.aria-label]="
+        !product.images?.hasOwnProperty('PRIMARY')
+          ? ('productDetails.noProductImage'
+            | cxTranslate: { product: product.name })
+          : undefined
+      "
+          [routerLink]="{ cxRoute: 'product', params: product } | cxUrl"
+          class="cx-product-image-container"
+        >
+          <cx-media
+            class="cx-product-image"
+            [container]="getMedia(product)"
+            format="product"
+            [alt]="product.name || product.summary"
+          ></cx-media>
+        </a>
+      </div>
+      <div class="col-12 col-md-8">
+        <ng-container *cxFeature="'a11yExpandedFocusIndicator'">
+          <h2 class="cx-product-name">
+            <a
+              [routerLink]="{ cxRoute: 'product', params: product } | cxUrl"
+              [innerHtml]="product.nameHtml"
+            ></a>
+          </h2>
+        </ng-container>
+
+        <ng-container *cxFeature="'!a11yExpandedFocusIndicator'">
+          <a
+            [routerLink]="{ cxRoute: 'product', params: product } | cxUrl"
+            class="cx-product-name"
+          >
+            <h2 [innerHtml]="product.nameHtml"></h2>
+          </a>
+        </ng-container>
+
+        <ng-template [cxOutlet]="ProductListOutlets.ITEM_DETAILS">
+          @if (product.averageRating) {
+            <cx-star-rating
+              [rating]="product?.averageRating"
+            ></cx-star-rating>
+          } @else {
+            <div class="cx-product-no-review">
+              {{ 'productDetails.noReviews' | cxTranslate }}
+            </div>
+          }
+          <div
+            class="cx-product-price"
+            [attr.aria-label]="'productDetails.productPrice' | cxTranslate"
+          >
+            {{ product.price?.formattedValue }}
+          </div>
+        </ng-template>
+
+        <div class="row">
+          <div class="col-12 col-md-7 col-xl-7">
+            <p class="cx-product-summary" [innerHtml]="product.summary">
+              {{ product.summary }}
+            </p>
+          </div>
+          <div class="col-12 col-md-5 col-xl-5">
+            <ng-template [cxOutlet]="ProductListOutlets.ITEM_ACTIONS">
+              @if (!hideAddToCartButton) {
+                <ng-container cxInnerComponentsHost></ng-container>
+              }
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ import { ProductVariantsFeatureModule } from './features/product/product-variant
 import { ProductImageZoomFeatureModule } from './features/product/product-image-zoom-feature.module';
 import { StRegistrationFeatureModule } from "./features/user/st-registration-feature.module";
 import { StCartFeatureModule } from "./features/cart/st-cart-feature.module";
+import { StPlpFeatureModule } from "./features/product/st-plp-feature.module";
 
 @NgModule({
   declarations: [],
@@ -86,7 +87,8 @@ import { StCartFeatureModule } from "./features/cart/st-cart-feature.module";
     ProductVariantsFeatureModule,
     ProductImageZoomFeatureModule,
     StRegistrationFeatureModule,
-    StCartFeatureModule
+    StCartFeatureModule,
+    StPlpFeatureModule,
   ],
   providers: [provideFeatureToggles({
     "formErrorsDescriptiveMessages": true,
