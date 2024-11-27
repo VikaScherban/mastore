@@ -1,0 +1,99 @@
+<h2>{{ 'stProductComparison.title' | cxTranslate }}</h2>
+
+@if (isLoading()) {
+    <cx-spinner></cx-spinner>
+} @else {
+    <div class="st-cart">
+        @if (data().products) {
+            <div class="comparisontable">
+                <ul class="row">
+                    <li class="legend"></li>
+                    @for (product of data().products; track product) {
+                        <li class="property">
+                            @if (product.code) {
+                                <button
+                                        class="btn btn-block btn-primary"
+                                        type="button"
+                                        (click)="deleteFromComparison(product.code)"
+                                >
+                                    {{ 'stProductComparison.remove' | cxTranslate }}
+                                </button>
+                            }
+                        </li>
+                    }
+                </ul>
+
+                <ul class="row">
+                    <li class="legend">{{ 'stProductComparison.image' | cxTranslate }}</li>
+                    @for (product of data().products; track product) {
+                        <li class="property">
+                            <span *ngIf="getImage(product) as image">
+                                <img src="{{ baseUrl }}{{image}}" alt="{{ product.name }}"
+                                     (click)="navigateToProduct(product?.url)"/>
+                            </span>
+                        </li>
+                    }
+                </ul>
+
+                <ul class="row">
+                    <li class="legend">{{ 'stProductComparison.name' | cxTranslate }}</li>
+                    @for (product of data().products; track product) {
+                        <li class="property">{{ product.name }}</li>
+                    }
+                </ul>
+
+                <ul class="row">
+                    <li class="legend">{{ 'stProductComparison.code' | cxTranslate }}</li>
+                    @for (product of data().products; track product) {
+                        <li class="property">{{ product.code }}</li>
+                    }
+                </ul>
+
+                <ul class="row">
+                    <li class="legend">{{ 'stProductComparison.price' | cxTranslate }}</li>
+                    @for (product of data().products; track product) {
+                        <li class="property text-monospace">{{ product.price?.formattedValue }}</li>
+                    }
+                </ul>
+
+                @for (classification of data().classifications; track classification) {
+                    <ul class="row">
+                        <li class="legend">{{ classification.name }}</li>
+                        @if (classification.code) {
+                            @for (product of data().products; track product) {
+                                @if (containsClassification(product, classification?.code)) {
+                                    <li class="property">
+                                        @for (productClass of product.classifications; track productClass) {
+                                            @if (productClass.code === classification.code) {
+                                                @for (feature of productClass.features; track feature) {
+                                                    <div class="featureContainer">
+                                                        <h3>{{ feature.name }}</h3>
+                                                        <ul class="comparison-value">
+                                                            @for (featureValue of feature?.featureValues; track featureValue) {
+                                                                <li>
+                                                                    {{ featureValue?.value }}
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </li>
+                                } @else {
+                                    <li class="property empty">
+                                        <span class="material-symbols-rounded">device_unknown</span>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+        } @else {
+            <div class="empty">
+                <h1>Comparison list is empty.</h1>
+            </div>
+        }
+    </div>
+}

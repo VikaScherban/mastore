@@ -19,6 +19,8 @@ import { ProductImageZoomFeatureModule } from './features/product/product-image-
 import { StRegistrationFeatureModule } from "./features/user/st-registration-feature.module";
 import { StCartFeatureModule } from "./features/cart/st-cart-feature.module";
 import { StPlpFeatureModule } from "./features/product/st-plp-feature.module";
+import { StAddComparisonProductsFeatureModule } from "./features/product/st-add-comparison-products-feature.module";
+import { StComparisonProductsFeatureModule } from "./features/product/st-comparison-products-feature.module";
 
 @NgModule({
   declarations: [],
@@ -89,6 +91,8 @@ import { StPlpFeatureModule } from "./features/product/st-plp-feature.module";
     StRegistrationFeatureModule,
     StCartFeatureModule,
     StPlpFeatureModule,
+    StAddComparisonProductsFeatureModule,
+    StComparisonProductsFeatureModule
   ],
   providers: [provideFeatureToggles({
     "formErrorsDescriptiveMessages": true,
