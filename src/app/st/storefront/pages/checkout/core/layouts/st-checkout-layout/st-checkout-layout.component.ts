@@ -5,7 +5,7 @@ import { CheckoutStepService } from '@spartacus/checkout/base/components';
 import { switchMap } from 'rxjs';
 
 @Component({
-  selector: 'st-checkout-layout-header',
+  selector: 'st-checkout-layout',
   standalone: true,
   template: `
     <div class="mt-2 mb-4">
@@ -14,11 +14,11 @@ import { switchMap } from 'rxjs';
       </h2>
     </div>
     <div class="st-cart mb-4">
-      <ng-content select="[st-checkout-layout-header-content]"></ng-content>
+      <ng-content select="[st-checkout-layout-content]"></ng-content>
     </div>
   `,
 })
-export class StCheckoutLayoutHeaderComponent {
+export class StCheckoutLayoutComponent {
 
   title = toSignal<string>(
     this.checkoutStepService.activeStepIndex$
@@ -28,6 +28,7 @@ export class StCheckoutLayoutHeaderComponent {
           switch (activeStepIndex) {
             case 0: title = 'checkoutAddress.shippingAddress'; break;
             case 1: title = 'checkoutMode.deliveryMethod'; break;
+            case 2: title = 'paymentForm.payment'; break;
           }
           return this.translationService.translate(title);
         })

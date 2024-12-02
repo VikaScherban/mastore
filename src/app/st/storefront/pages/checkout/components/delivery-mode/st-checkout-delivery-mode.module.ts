@@ -6,9 +6,7 @@ import { OutletModule, PageComponentModule, SpinnerModule } from '@spartacus/sto
 import { CartNotEmptyGuard, CheckoutAuthGuard } from '@spartacus/checkout/base/components';
 
 import { StCheckoutDeliveryModeComponent } from './st-checkout-delivery-mode.component';
-import {
-  StCheckoutLayoutHeaderComponent
-} from '../../core/layouts/st-checkout-layout-header/st-checkout-layout-header.component';
+import { StCheckoutLayoutComponent } from "../../core/layouts/st-checkout-layout/st-checkout-layout.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +14,7 @@ import {
   ],
   imports: [
     CommonModule,
-    StCheckoutLayoutHeaderComponent,
+    StCheckoutLayoutComponent,
     FeaturesConfigModule,
     I18nModule,
     ReactiveFormsModule,

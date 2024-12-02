@@ -7,9 +7,7 @@ import { CardModule, SpinnerModule } from '@spartacus/storefront';
 import { AddressFormModule } from '@spartacus/user/profile/components';
 
 import { StCheckoutDeliveryAddressComponent } from './st-checkout-delivery-address.component';
-import {
-  StCheckoutLayoutHeaderComponent
-} from '../../core/layouts/st-checkout-layout-header/st-checkout-layout-header.component';
+import { StCheckoutLayoutComponent } from "../../core/layouts/st-checkout-layout/st-checkout-layout.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +20,7 @@ import {
     FeaturesConfigModule,
     AddressFormModule,
     CardModule,
-    StCheckoutLayoutHeaderComponent
+    StCheckoutLayoutComponent
   ],
   providers: [
     provideDefaultConfig(<CmsConfig>{
