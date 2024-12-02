@@ -4,6 +4,7 @@ import { ST_CHECKOUT_FEATURE_NAME } from './st-checkout-feature-name';
 
 export const ST_CHECKOUT_CMS_COMPONENTS: string[] = [
   'CheckoutDeliveryAddress',
+  'CheckoutDeliveryMode',
 ];
 
 export function defaultStCheckoutComponentsConfig() {

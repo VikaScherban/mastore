@@ -10,13 +10,11 @@ import { switchMap } from 'rxjs';
   template: `
     <div class="mt-2 mb-4">
       <h2 class="cx-checkout-title d-none d-lg-block d-xl-block">
-        <div class="mt-2 mb-4">
-          <h2 class="cx-checkout-title d-none d-lg-block d-xl-block">
-            {{ title() }}
-          </h2>
-        </div>
-        <ng-content select="[st-checkout-layout-header-content]"></ng-content>
+        {{ title() }}
       </h2>
+    </div>
+    <div class="st-cart mb-4">
+      <ng-content select="[st-checkout-layout-header-content]"></ng-content>
     </div>
   `,
 })
@@ -26,13 +24,10 @@ export class StCheckoutLayoutHeaderComponent {
     this.checkoutStepService.activeStepIndex$
       .pipe(
         switchMap(activeStepIndex => {
-          let title = 'checkoutAddress.';
-          const allSteps = this.checkoutStepService.allSteps.map(step => step.id);
+          let title = '';
           switch (activeStepIndex) {
-            case 0: title = title.concat('shippingAddress'); break;
-            case 1: title = title.concat(allSteps[activeStepIndex]); break;
-            case 2: title = title.concat(allSteps[activeStepIndex]); break;
-            case 3: title = title.concat(allSteps[activeStepIndex]); break;
+            case 0: title = 'checkoutAddress.shippingAddress'; break;
+            case 1: title = 'checkoutMode.deliveryMethod'; break;
           }
           return this.translationService.translate(title);
         })

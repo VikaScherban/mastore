@@ -54,9 +54,10 @@ export class StCheckoutDeliveryAddressComponent {
   });
   private busy$ = new BehaviorSubject<boolean>(false);
 
+  doneAutoSelect = false;
+
   cards = toSignal<CardWithAddress[]>(this.createCards());
   isUpdating = toSignal<boolean>(this.createIsUpdating());
-  doneAutoSelect = signal<boolean>(false);
   selectedAddress = signal<Address | undefined>(undefined);
   addressFormOpened = signal<boolean>(false);
 
@@ -124,7 +125,7 @@ export class StCheckoutDeliveryAddressComponent {
       return;
     }
     this.busy$.next(true);
-    this.doneAutoSelect.set(true);
+    this.doneAutoSelect = true;
     this.checkoutDeliveryAddressFacade
       .createAndSetAddress(address)
       .pipe(
@@ -136,7 +137,7 @@ export class StCheckoutDeliveryAddressComponent {
         complete: () => this.next(),
         error: () => {
           this.onError();
-          this.doneAutoSelect.set(false);
+          this.doneAutoSelect = false;
         },
       });
   }
@@ -240,7 +241,7 @@ export class StCheckoutDeliveryAddressComponent {
     selected: Address | undefined
   ): void {
     if (
-      !this.doneAutoSelect() &&
+      !this.doneAutoSelect &&
       addresses?.length &&
       (!selected || Object.keys(selected).length === 0)
     ) {
@@ -248,7 +249,7 @@ export class StCheckoutDeliveryAddressComponent {
       if (selected) {
         this.setAddress(selected);
       }
-      this.doneAutoSelect.set(true);
+      this.doneAutoSelect = true;
     } else if (selected && this.shouldUseAddressSavedInCart()) {
       this.selectedAddress.set(selected);
     }
