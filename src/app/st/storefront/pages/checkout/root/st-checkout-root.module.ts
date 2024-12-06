@@ -6,6 +6,9 @@ export const ST_CHECKOUT_CMS_COMPONENTS: string[] = [
   'CheckoutDeliveryAddress',
   'CheckoutDeliveryMode',
   'CheckoutPaymentDetails',
+  'CheckoutReviewPayment',
+  'CheckoutReviewShipping',
+  'CheckoutReviewOverview'
 ];
 
 export function defaultStCheckoutComponentsConfig() {

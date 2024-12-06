@@ -1,0 +1,15 @@
+@if (cart()) {
+  <div class="st-cart mt-2 mb-2">
+    <div class="cx-review-cart-total d-none d-lg-block d-xl-block">
+      {{ 'cartItems.cartTotal' | cxTranslate: { count: cart()?.totalUnitCount } }}:
+      {{ cart()?.totalPrice?.formattedValue }}
+    </div>
+    <cx-promotions
+      [promotions]="
+      (cart()?.appliedOrderPromotions || []).concat(
+        cart()?.potentialOrderPromotions || []
+      )
+    "
+    ></cx-promotions>
+  </div>
+}
