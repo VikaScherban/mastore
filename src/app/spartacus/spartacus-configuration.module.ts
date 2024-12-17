@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { translationChunksConfig, translations } from "@spartacus/assets";
 import {
-  AuthConfig,
+  AuthConfig, CmsConfig,
   FeaturesConfig,
   I18nConfig,
   OccConfig,
@@ -10,6 +10,7 @@ import {
 } from "@spartacus/core";
 import { defaultCmsContentProviders, layoutConfig, mediaConfig } from "@spartacus/storefront";
 import { stLayoutConfig } from "./config/st-config";
+import {customCmsComponentsConfig} from "./config/custom-components-config";
 
 @NgModule({
   declarations: [],
@@ -55,6 +56,9 @@ import { stLayoutConfig } from "./config/st-config";
       level: '2211.27'
     }
   }),
+    provideConfig(<CmsConfig>{
+      cmsComponents: customCmsComponentsConfig
+    }),
     provideConfig(stLayoutConfig),
   ]
 })
