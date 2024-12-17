@@ -1,0 +1,34 @@
+<div class="register">
+  <p class="cx-section-title">
+    {{ 'loginForm.dontHaveAccount' | cxTranslate }}
+  </p>
+
+  <ng-container *cxFeature="'a11yUseButtonsForBtnLinks'">
+    <button
+      (click)="navigateTo(loginAsGuest ? 'checkoutLogin' : 'register')"
+      class="btn btn-block btn-secondary"
+      [ngClass]="loginAsGuest ? 'btn-guest' : 'btn-register'"
+    >
+      {{
+        (loginAsGuest ? 'loginForm.guestCheckout' : 'loginForm.register')
+          | cxTranslate
+      }}
+    </button>
+  </ng-container>
+
+  <ng-container *cxFeature="'!a11yUseButtonsForBtnLinks'">
+    @if (loginAsGuest) {
+      <a
+        [routerLink]="{ cxRoute: 'checkoutLogin' } | cxUrl"
+        class="btn btn-block btn-secondary btn-guest"
+      >{{ 'loginForm.guestCheckout' | cxTranslate }}</a
+      >
+    } @else {
+      <a
+        [routerLink]="{ cxRoute: 'register' } | cxUrl"
+        class="btn btn-block btn-secondary btn-register"
+      >{{ 'loginForm.register' | cxTranslate }}</a
+      >
+    }
+  </ng-container>
+</div>

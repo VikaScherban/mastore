@@ -1,0 +1,61 @@
+<div class="st-cart mt-2 mb-2">
+  <table role="table" class="w-100">
+    <caption class="cx-visually-hidden">
+      {{
+        'cartItems.caption' | cxTranslate
+      }}
+    </caption>
+    @if (hasHeader) {
+      <thead>
+      <tr role="row" class="cx-item-list-header">
+        <th role="columnheader" class="cx-item-list-desc">
+          {{ 'cartItems.item' | cxTranslate }}
+        </th>
+
+        <ng-template
+          role="columnheader"
+          [cxOutlet]="CartOutlets.CPQ_QUOTE_HEADING"
+          [cxOutletContext]="items"
+        ></ng-template>
+        <th role="columnheader" class="cx-item-list-qty">
+          {{ 'cartItems.quantity' | cxTranslate }}
+        </th>
+        @if (options.isSaveForLater) {
+          <th role="columnheader" class="cx-item-list-total">
+            {{ 'saveForLaterItems.stock' | cxTranslate }}
+          </th>
+        } @else {
+          <th role="columnheader" class="cx-item-list-total">
+            {{ 'cartItems.total' | cxTranslate }}
+          </th>
+        }
+        @if (!readonly || options.isSaveForLater || options.displayAddToCart) {
+          <th role="columnheader" class="cx-item-list-actions">
+            {{ 'cartItems.actions' | cxTranslate }}
+          </th>
+        }
+      </tr>
+      </thead>
+    }
+
+    <tbody class="cx-item-list-items">
+      @for (item of items; track item; let i = $index) {
+        <ng-container
+          *ngIf="getControl(item) | async as control"
+          [class.is-changed]="control.get('quantity').disabled"
+        >
+          <tr
+            cx-cart-item-list-row
+            role="row"
+            class="cx-item-list-row"
+            [item]="item"
+            [quantityControl]="getQuantityControl(control)"
+            [readonly]="readonly"
+            [promotionLocation]="promotionLocation"
+            [options]="options"
+          ></tr>
+        </ng-container>
+      }
+    </tbody>
+  </table>
+</div>

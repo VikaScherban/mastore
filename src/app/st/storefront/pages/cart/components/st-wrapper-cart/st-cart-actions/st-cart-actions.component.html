@@ -1,0 +1,35 @@
+@if (cart()) {
+  <div class="st-cart mt-2 mb-2">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="p-2">
+        <button class="link cx-action-link" [routerLink]="{ cxRoute: 'savedCarts' } | cxUrl">
+          <span>{{ 'addToSavedCart.savedCarts' | cxTranslate }}</span>
+        </button>
+      </div>
+      <div class="p-2">
+        <button #saveElement class="link cx-action-link" (click)="saveCart(cart())">
+          <span>{{ 'addToSavedCart.saveCartForLater' | cxTranslate }}</span>
+        </button>
+      </div>
+      <div class="p-2">
+        @if (entries()) {
+          <button
+            class="link cx-action-link"
+            (click)="exportCsv(entries())"
+          >
+            {{ 'exportEntries.exportToCsv' | cxTranslate }}
+          </button>
+        }
+      </div>
+      <div class="p-2">
+        <button
+          #clearElement
+          (click)="clearCart($event)"
+          class="link cx-action-link"
+        >
+          {{ 'clearCart.clearCart' | cxTranslate }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

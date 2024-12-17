@@ -2,3 +2,52 @@
 
 @import 'styles-config';
 @import '@spartacus/styles/index';
+@import 'styles/custom/index';
+
+body {
+  --cx-color-primary: #8B8B81;
+  --cx-color-secondary: #8B8B81;
+  --cx-color-text: #5c6f68;
+  --cx-color-background: #F5F5F5;
+  --cx-color-dark: #555555;
+  --cx-page-width-max: 1440px;
+  background-color: $cultured!important;
+  font-family: "Montserrat", sans-serif;
+
+  --cx-color-inverse: #ffffff;
+  --cx-color-transparent: transparent;
+  --cx-color-success: #38871f;
+  --cx-color-info: #17a2b8;
+  --cx-color-warning: #ffc107;
+  --cx-color-danger: #db0002;
+  --cx-color-light: #f1f1f1;
+  --cx-color-primary-accent: #055f9f;
+  --cx-color-success-accent: #f0fbe4;
+  --cx-color-danger-accent: #fff1f1;
+  --cx-color-warning-accent: #fff5df;
+  --cx-color-info-accent: #deeffe;
+  --cx-color-medium: #d3d6db;
+  --cx-color-background-dark: #212738;
+  --cx-color-visual-focus: #6d9df7;
+  --cx-color-background-focus: rgba(80, 176, 244, 0.1);
+  --cx-color-border-focus: rgba(166, 204, 232, 0.6);
+  --cx-font-weight-light: 300;
+  --cx-font-weight-normal: 400;
+  --cx-font-weight-semi: 600;
+  --cx-font-weight-bold: 700;
+  --cx-text-transform: capitalize;
+  --cx-direction: ltr;
+  --cx-transition-duration: 0.5s;
+  --cx-animation-duration: 1s;
+  --cx-border-radius: 6px;
+  --cx-buttons-border-radius: var(--cx-border-radius);
+  --cx-buttons-border-width: 3px;
+  --cx-border-style: solid;
+
+  cx-page-layout {
+    &.CartPageTemplate {
+      gap: 1rem;
+      padding: 1rem;
+    }
+  }
+}

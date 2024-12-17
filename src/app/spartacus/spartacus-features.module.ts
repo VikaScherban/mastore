@@ -16,6 +16,12 @@ import { AsmCustomer360FeatureModule } from './features/asm/asm-customer360-feat
 import { SmartEditFeatureModule } from './features/smartedit/smart-edit-feature.module';
 import { ProductVariantsFeatureModule } from './features/product/product-variants-feature.module';
 import { ProductImageZoomFeatureModule } from './features/product/product-image-zoom-feature.module';
+import { StRegistrationFeatureModule } from "./features/user/st-registration-feature.module";
+import { StCartFeatureModule } from "./features/cart/st-cart-feature.module";
+import { StPlpFeatureModule } from "./features/product/st-plp-feature.module";
+import { StAddComparisonProductsFeatureModule } from "./features/product/st-add-comparison-products-feature.module";
+import { StComparisonProductsFeatureModule } from "./features/product/st-comparison-products-feature.module";
+import { StCheckoutFeatureModule } from "./features/checkout/st-checkout-feature.module";
 
 @NgModule({
   declarations: [],
@@ -82,7 +88,13 @@ import { ProductImageZoomFeatureModule } from './features/product/product-image-
     AsmCustomer360FeatureModule,
     SmartEditFeatureModule,
     ProductVariantsFeatureModule,
-    ProductImageZoomFeatureModule
+    ProductImageZoomFeatureModule,
+    StRegistrationFeatureModule,
+    StCartFeatureModule,
+    StPlpFeatureModule,
+    StAddComparisonProductsFeatureModule,
+    StComparisonProductsFeatureModule,
+    StCheckoutFeatureModule,
   ],
   providers: [provideFeatureToggles({
     "formErrorsDescriptiveMessages": true,

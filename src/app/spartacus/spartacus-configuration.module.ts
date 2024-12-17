@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
 import { translationChunksConfig, translations } from "@spartacus/assets";
-import {AuthConfig, FeaturesConfig, I18nConfig, OccConfig, provideConfig, SiteContextConfig} from "@spartacus/core";
+import {
+  AuthConfig, CmsConfig,
+  FeaturesConfig,
+  I18nConfig,
+  OccConfig,
+  provideConfig,
+  SiteContextConfig
+} from "@spartacus/core";
 import { defaultCmsContentProviders, layoutConfig, mediaConfig } from "@spartacus/storefront";
-import { stLayoutConfig } from './config/st-config';
+import { stLayoutConfig } from "./config/st-config";
+import {customCmsComponentsConfig} from "./config/custom-components-config";
 
 @NgModule({
   declarations: [],
@@ -42,11 +50,15 @@ import { stLayoutConfig } from './config/st-config';
       chunks: translationChunksConfig,
       fallbackLang: 'en'
     },
-  }), provideConfig(<FeaturesConfig>{
+  }),
+    provideConfig(<FeaturesConfig>{
     features: {
       level: '2211.27'
     }
   }),
+    provideConfig(<CmsConfig>{
+      cmsComponents: customCmsComponentsConfig
+    }),
     provideConfig(stLayoutConfig),
   ]
 })
